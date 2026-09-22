@@ -1,4 +1,4 @@
-"""Blossom - Paare in einem Graphen ohne zwei Seiten - interaktive Konzept-Demo
+"""Blossom - Paare in einem allgemeinen Graphen - interaktive Konzept-Demo
 Sebastian Hanisch - Operations Research und Machine Learning
 
 Anders als die Fall-Demos im Portfolio (ein Anwendungsfall, mehrere Verfahren im Vergleich) zeigt diese Demo EIN Verfahren - Edmonds' Blossom-Algorithmus - und lässt stattdessen das Beispiel wachsen.
@@ -84,10 +84,10 @@ def _brute(reach, ballung, seed):
     return [ev.brute_proof(generate(12, reach, ballung, seed + k)) for k in range(20)]
 
 
-st.title("🌸 Blossom – Paare in einem Graphen ohne zwei Seiten")
+st.title("🌸 Blossom – Paare in einem allgemeinen Graphen")
 st.markdown(
     """
-In den bisherigen Demos gab es **zwei Seiten**: Fahrzeuge und Aufträge. Hier gibt es nur **eine Gruppe von Fahrern**, je zwei können **zusammen fahren**, wenn sie nah genug beieinander liegen - ein allgemeiner Graph. Und in ihm gibt es **ungerade Kreise**:
+In den bisherigen Demos gab es **zwei Seiten**: Fahrzeuge und Aufträge - man nennt das **bipartit**. Hier gibt es nur **eine Gruppe von Fahrern**, ein **allgemeiner** (nicht bipartiter) Graph: je zwei können **zusammen fahren**, wenn sie nah genug beieinander liegen. Und in ihm gibt es **ungerade Kreise**:
 drei Fahrer, die einander erreichen. Die Suche der Verbesserungswege-Demo wird dort unzuverlässig: sie kann in einem solchen Kreis nur eine Richtung sehen und meldet „kein Verbesserungsweg“, obwohl es einen gibt.
 **Edmonds' Blossom-Algorithmus** zieht so einen Kreis, die **Blüte**, zu **einer** Ecke zusammen, sucht weiter und klappt den Weg am Ende wieder durch die Blüte auf - in der richtigen Richtung. Am Ende steht sogar ein **Beweis** der Optimalität.
 """
@@ -368,7 +368,7 @@ st.markdown(
 | Annahme | Was passiert, wenn sie verletzt ist | Wer setzt an |
 |---|---|---|
 | **Alle Paare sind gleich gut** | Kosten spielen keine Rolle: Blossom findet die *Zahl* der Paare, nicht die billigste Paarung. Soll auch die Fahrzeit minimal sein, braucht es Gewichte. | **Gewichteter Blossom** (nicht gebaut), im zweiseitigen Fall die **Ungarische Methode** (gebaut) |
-| **Jeder kann mit jedem** (eine Gruppe) | Gibt es zwei getrennte Seiten, geht es schneller: keine Blüten, viele kürzeste Wege je Phase. | **Hopcroft–Karp** (gebaut) |
+| **Jeder kann mit jedem** (eine Gruppe) | Gibt es zwei getrennte Seiten (bipartit), geht es schneller: keine Blüten, viele kürzeste Wege je Phase. | **Hopcroft–Karp** (gebaut) |
 | **Größe zählt, nicht Zufriedenheit** | Haben die Fahrer Vorlieben, ist die stabile Paarung das Ziel - und in einer Gruppe muss keine existieren. | **Stabile Mitbewohner** (nicht gebaut) |
 | **Alles ist vorab bekannt** | Kommen die Fahrer nacheinander und sind Zusagen bindend, ist nur Online-Matching möglich. | **Online-Matching** (gebaut) |
 | **Zwei Fahrer je Fahrt** | Größere Gruppen (Kapazitäten, b-Matching) brauchen andere Verfahren. | (nicht in der Linie) |
@@ -396,7 +396,7 @@ with st.expander("📐 Mathematische Formulierung"):
 
 **Aufwand.** Höchstens $n/2$ Verbesserungen; jede Suche sieht jede Kante höchstens zweimal und macht höchstens $O(n)$ Kontraktionen von je $O(n)$ Aufwand. Mit Mitgliederlisten je Blüte ergibt das $O(n\cdot|E|)$ (die einfache Version mit Basis-Feld für alle Ecken $O(n^3)$). Im vollständigen Graphen mit ungerader Eckenzahl braucht der Beweis $(n-1)/2$ verschachtelte Kontraktionen und genau $n(n-1)$ gesehene Kanten.
 
-**Grenzen.** (1) Keine Gewichte. (2) Eine Gruppe: bei zwei Seiten schneller. (3) Größe statt Stabilität. (4) Alles vorab bekannt. (5) Zwei Fahrer je Fahrt. (6) Nicht für riesige Graphen optimiert.
+**Grenzen.** (1) Keine Gewichte. (2) Eine Gruppe: bei einem bipartiten Graphen (zwei Seiten) schneller. (3) Größe statt Stabilität. (4) Alles vorab bekannt. (5) Zwei Fahrer je Fahrt. (6) Nicht für riesige Graphen optimiert.
 
 Implementiert in `bl_scenario.py` (Karten, eigener Zufallsgenerator, feste Karten), `bl_greedy.py` (Startpaarungen), `bl_blossom.py` (Wald, Kontraktion, Aufklappen, Ereignisprotokoll, Beweis), `bl_oracle.py` (Brute Force), `bl_evaluation.py` (Kennzahlen, Verteilungen, Sweeps).
         """

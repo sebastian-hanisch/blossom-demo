@@ -1,10 +1,10 @@
-# Blossom – Paare in einem Graphen ohne zwei Seiten – Streamlit-Demo
+# Blossom – Paare in einem allgemeinen Graphen – Streamlit-Demo
 
 **[→ Demo live ausprobieren](https://sebastianhanisch-edmonds-matching-demo.streamlit.app/)**
 
 Achtes Stück der **Matching-Linie** der "Konzepte"-Reihe für die Website "Sebastian Hanisch – Operations Research und Machine Learning", ein **unabhängiger Ast unter den Verbesserungswegen** ([augmenting-path-demo](https://github.com/sebastian-hanisch/augmenting-path-demo)):
 anders als die Fall-Demos im Portfolio (ein Anwendungsfall, mehrere Verfahren im Vergleich) zeigt diese Demo **ein** Verfahren – **Edmonds' Blossom-Algorithmus** – an einem wachsenden Beispiel.
-In den bisherigen Stücken gab es zwei Seiten (Fahrzeuge und Aufträge). Hier gibt es **eine Gruppe von Fahrern**: je zwei können zusammen fahren (Fahrgemeinschaften), wenn ihre Fahrzeit höchstens die Reichweite beträgt – ein **allgemeiner Graph** mit **ungeraden Kreisen** („Blüten“).
+In den bisherigen Stücken gab es zwei Seiten (Fahrzeuge und Aufträge) – man nennt das **bipartit**. Hier gibt es **eine Gruppe von Fahrern**: je zwei können zusammen fahren (Fahrgemeinschaften), wenn ihre Fahrzeit höchstens die Reichweite beträgt – ein **allgemeiner** (nicht bipartiter) **Graph** mit **ungeraden Kreisen** („Blüten“).
 Die Suche der Verbesserungswege-Demo ist dort nicht mehr korrekt; Blossom zieht jede Blüte zu einer Ecke zusammen, sucht weiter, klappt den Weg wieder auf und liefert am Ende einen **Beweis** (Tutte–Berge / Gallai–Edmonds). Gesucht ist ein größtmögliches ungewichtetes Matching; **Gewichte** (billigste Paarung) sind das nächste Stück, der Gewichtete Blossom.
 
 **Wichtigster Befund der Vorarbeit:** die Geschichte „ohne Blüten verliert die Suche viele Paare“ ist auf realistischen Karten **schwächer, als sie klingt**. Die faire Baseline ist Edmonds' Waldsuche **ohne den Kontraktionsschritt** (die wörtliche Breitensuche der Zweiseiten-Demo liefert auf einem allgemeinen Graphen nicht einmal gültige Wege, das wäre ein Strohmann): sie verliert Paare nur auf einem Teil der Karten, meist eines, und der Verlust hängt an der Nummerierung der Fahrer. Der **stärkere Befund** ist der Beweis: ohne Kontraktion lässt sich selbst ein *richtiges* Ergebnis fast nie beweisen. Deshalb ist der Vergleich eine **Leiter mit vier Stufen**.
