@@ -1,5 +1,7 @@
 # Blossom – Paare in einem Graphen ohne zwei Seiten – Streamlit-Demo
 
+**[→ Demo live ausprobieren](https://sebastianhanisch-edmonds-matching-demo.streamlit.app/)**
+
 Achtes Stück der **Matching-Linie** der "Konzepte"-Reihe für die Website "Sebastian Hanisch – Operations Research und Machine Learning", ein **unabhängiger Ast unter den Verbesserungswegen** ([augmenting-path-demo](https://github.com/sebastian-hanisch/augmenting-path-demo)):
 anders als die Fall-Demos im Portfolio (ein Anwendungsfall, mehrere Verfahren im Vergleich) zeigt diese Demo **ein** Verfahren – **Edmonds' Blossom-Algorithmus** – an einem wachsenden Beispiel.
 In den bisherigen Stücken gab es zwei Seiten (Fahrzeuge und Aufträge). Hier gibt es **eine Gruppe von Fahrern**: je zwei können zusammen fahren (Fahrgemeinschaften), wenn ihre Fahrzeit höchstens die Reichweite beträgt – ein **allgemeiner Graph** mit **ungeraden Kreisen** („Blüten“).
