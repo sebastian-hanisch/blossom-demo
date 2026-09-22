@@ -95,7 +95,7 @@ drei Fahrer, die einander erreichen. Die Suche der Verbesserungswege-Demo wird d
 st.caption(
     "Anders als die Fall-Demos im Portfolio, die an einem Anwendungsfall mehrere Verfahren vergleichen, zeigt diese Demo - achtes Stück der Matching-Linie der \"Konzepte\"-Reihe, unabhängiger Ast unter den Verbesserungswegen - **ein** Verfahren an einem wachsenden Beispiel. "
     "Der Vergleich ist ehrlich gebaut: die **Baseline** ist dieselbe Suche **ohne** den Kontraktionsschritt (die wörtliche Breitensuche der zweiseitigen Demo liefert auf einem allgemeinen Graphen nicht einmal gültige Wege). "
-    "Gewichte (welche Paare **billiger** sind) fehlen absichtlich: sie sind das nächste Stück, der **Gewichtete Blossom**. Nachbarn der Linie, noch nicht gebaut: Gewichteter Blossom und Stabile Mitbewohner."
+    "Gewichte (welche Paare **billiger** sind) fehlen absichtlich: sie sind das nächste Stück, der **Gewichtete Blossom** - inzwischen gebaut, wie die ganze Matching-Linie."
 )
 
 with st.expander("So funktioniert Blossom", expanded=True):
@@ -367,15 +367,15 @@ st.markdown(
     """
 | Annahme | Was passiert, wenn sie verletzt ist | Wer setzt an |
 |---|---|---|
-| **Alle Paare sind gleich gut** | Kosten spielen keine Rolle: Blossom findet die *Zahl* der Paare, nicht die billigste Paarung. Soll auch die Fahrzeit minimal sein, braucht es Gewichte. | **Gewichteter Blossom** (nicht gebaut), im zweiseitigen Fall die **Ungarische Methode** (gebaut) |
+| **Alle Paare sind gleich gut** | Kosten spielen keine Rolle: Blossom findet die *Zahl* der Paare, nicht die billigste Paarung. Soll auch die Fahrzeit minimal sein, braucht es Gewichte. | **Gewichteter Blossom** (gebaut), im zweiseitigen Fall die **Ungarische Methode** (gebaut) |
 | **Jeder kann mit jedem** (eine Gruppe) | Gibt es zwei getrennte Seiten (bipartit), geht es schneller: keine Blüten, viele kürzeste Wege je Phase. | **Hopcroft–Karp** (gebaut) |
-| **Größe zählt, nicht Zufriedenheit** | Haben die Fahrer Vorlieben, ist die stabile Paarung das Ziel - und in einer Gruppe muss keine existieren. | **Stabile Mitbewohner** (nicht gebaut) |
+| **Größe zählt, nicht Zufriedenheit** | Haben die Fahrer Vorlieben, ist die stabile Paarung das Ziel - und in einer Gruppe muss keine existieren. | **Stabile Mitbewohner** (gebaut) |
 | **Alles ist vorab bekannt** | Kommen die Fahrer nacheinander und sind Zusagen bindend, ist nur Online-Matching möglich. | **Online-Matching** (gebaut) |
 | **Zwei Fahrer je Fahrt** | Größere Gruppen (Kapazitäten, b-Matching) brauchen andere Verfahren. | (nicht in der Linie) |
 | **Kleine bis mittlere Graphen** | Die hier gezeigte Version ist einfach; für riesige Graphen gibt es asymptotisch schnellere Verfahren (Micali–Vazirani). | (nicht in der Linie) |
 """
 )
-st.caption("Die Nachbarn der Matching-Linie (noch nicht gebaut): Gewichteter Blossom und Stabile Mitbewohner. Bereits gebaut: die Wurzel (Greedy-Matching), die Verbesserungswege, Hopcroft–Karp, die Ungarische Methode, der Auktionsalgorithmus, Gale–Shapley, Online-Matching und diese Demo.")
+st.caption("Die Matching-Linie ist inzwischen vollständig gebaut (13 Stücke): die Wurzel (Greedy-Matching), die Verbesserungswege, Hopcroft–Karp, die Ungarische Methode, der Auktionsalgorithmus, diese Demo, Gewichteter Blossom, Gale–Shapley, Stabile Mitbewohner, Krankenhaus-Zulassung, Top Trading Cycles, Nierentausch und Online-Matching.")
 
 st.markdown("---")
 
