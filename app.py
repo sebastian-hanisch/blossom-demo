@@ -22,6 +22,7 @@ from bl_presets import (
     init_session_state_defaults,
     load_permalink_settings,
     randomize_seed,
+    seed_widget,
     sync_query_params,
 )
 from bl_scenario import build, generate
@@ -132,13 +133,17 @@ with st.sidebar:
         help="Eine zufällige Karte mit Fahrern oder eine feste Lehrbuchkarte: die kleinste Blüte, eine Blüte mit Stiel, verschachtelte Blüten, die Windmühle (der ganze Graph ist eine Blüte) und der Stern.",
     )
     if net_key == "random":
+        seed_widget("n_slider")
         n = st.slider("Fahrer", *bounds("n_slider"), key="n_slider", help="Anzahl der Fahrer. Je zwei können zusammen fahren, wenn ihre Fahrzeit höchstens die Reichweite beträgt.")
         st.session_state[KEPT["n_slider"]] = n
+        seed_widget("reach_slider")
         reach = st.slider("Reichweite [min]", *bounds("reach_slider"), key="reach_slider", step=5,
                           help="Wie weit zwei Fahrer höchstens auseinander liegen dürfen. Bei kleiner Reichweite ist der Graph fast ein Baum, bei großer schafft schon Greedy fast alles: Blüten spielen dazwischen die größte Rolle (n = 30: um Reichweite 20). Ab 142 kann jeder jeden erreichen.")
         st.session_state[KEPT["reach_slider"]] = reach
+        seed_widget("ballung_slider")
         ballung = st.slider("Ballung [%]", *bounds("ballung_slider"), key="ballung_slider", step=25, help="0 = Fahrer gleichmäßig verteilt, 100 = alle um drei Stadtteile gruppiert. Mehr Ballung bedeutet hier weniger Verlust ohne Kontraktion.")
         st.session_state[KEPT["ballung_slider"]] = ballung
+        seed_widget("seed_input")
         seed = st.number_input("Zufalls-Seed", *bounds("seed_input"), key="seed_input", step=1)
         st.session_state[KEPT["seed_input"]] = seed
         st.button("🎲 Neue Karte generieren", width="stretch", on_click=randomize_seed, help="Würfelt einen neuen Zufalls-Seed. Die Verteilung über 100 feste Karten weiter unten ändert sich dabei nicht.")
