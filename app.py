@@ -106,7 +106,7 @@ with st.expander("So funktioniert Blossom", expanded=True):
 2. **Verbesserungsweg:** berührt eine Kante zwei gerade Fahrer **verschiedener Bäume**, ist der Weg zwischen den Wurzeln ein Verbesserungsweg: Umklappen (gewählt ⇄ nicht gewählt) gibt ein Paar mehr.
 3. **Blüte:** verbindet eine Kante zwei gerade Fahrer **desselben Baums**, entsteht ein **ungerader Kreis**. Die Suche zieht ihn zu **einer** geraden Ecke zusammen (die ungeraden Mitglieder werden gerade und suchen weiter). Blüten können in Blüten liegen.
 4. **Aufklappen:** beim Zurücklaufen des Weges wird jede Blüte wieder geöffnet, und zwar in der Richtung, die eine **gerade** Zahl von Kanten im Inneren hat - deshalb bleibt der Weg alternierend.
-5. **Ende und Beweis:** findet die Suche keinen Weg mehr, sind die geraden Fahrer D, die ungeraden A und der Rest C. Fehlen nach Entfernen von A genau so viele ungerade Komponenten wie freie Fahrer, ist das Matching **bewiesen größtmöglich** (Tutte-Berge).
+5. **Ende und Beweis:** findet die Suche keinen Weg mehr, sind die geraden Fahrer D, die ungeraden A und der Rest C. Bleiben nach Entfernen von A genau so viele ungerade Komponenten übrig wie |A| plus freie Fahrer, ist das Matching **bewiesen größtmöglich** (Tutte-Berge).
         """
     )
 
@@ -321,7 +321,7 @@ if st.session_state.get("scale_on"):
     c2.table({"n": [r["n"] for r in rows], "Reichweite": [r["reach"] for r in rows], "leer: Kanten": [_int(r["empty"]["scan"]) for r in rows], "Greedy: Kanten": [_int(r["edge"]["scan"]) for r in rows],
               "Greedy: Kanten je Kante": [_f(r["edge"]["scan_per_edge"], 1) for r in rows], "ohne Kontraktion, Greedy": [_int(r["edge"]["nc_scan"]) for r in rows], "ohne Kontraktion: Karten mit Verlust": [f"{r['edge']['lost_maps']} von 10" for r in rows]})
     st.caption("Mittel über 10 feste Karten, Reichweite so gewählt, dass der mittlere Grad bei jeder Größe etwa 3 bleibt. Der Aufwand wächst etwa wie n^1,5. Theorie: höchstens n/2 Verbesserungen je O(Kanten) plus die Kontraktionen, die mit Mitgliederlisten O(Größe) kosten. "
-               "Ohne Kontraktion ist es etwas billiger, weil die Suche früher aufhört. Der Verlust ohne Kontraktion bleibt ein fast gleicher Anteil der Paare (etwa 1 %), wird absolut aber größer.")
+               "Ohne Kontraktion ist es etwas billiger, weil die Suche früher aufhört. Der Verlust ohne Kontraktion bleibt ein fast gleicher Anteil der Paare (etwa 1 bis 2 %), wird absolut aber größer.")
 
 if not fixed:
     if st.button("Andere Nummerierung: derselbe Graph, andere Reihenfolge (12 Nummerierungen je Karte)", key="numbering_start"):
@@ -345,7 +345,7 @@ if not fixed:
                   "Weg durch Blüte": [r["with_through"] for r in rrows], "Verlust": [r["lost_maps"] for r in rrows]})
         st.caption("Von n Karten. Bei kleinem Grad ist der Graph fast ein Baum (wenige Kreise), bei großem schafft schon Greedy fast alles; dazwischen ist der Verlust ohne Kontraktion am größten - ein Buckel.")
 
-if st.button("Der vollständige Graph: der Beweis braucht n/2 verschachtelte Blüten", key="complete_start"):
+if st.button("Der vollständige Graph: der Beweis braucht (n − 1)/2 verschachtelte Blüten", key="complete_start"):
     st.session_state["complete_on"] = True
 if st.session_state.get("complete_on"):
     with st.spinner("Rechne..."):
@@ -411,6 +411,6 @@ st.markdown("---")
 
 st.caption(
     "Diese Demo ist Teil des Portfolios von [Sebastian Hanisch](https://sebastianhanisch.net) – "
-    "Operations Research und Machine Learning. Interesse an einer maßgeschneiderten Lösung für "
-    "Ihr Unternehmen? [Kontakt aufnehmen](https://sebastianhanisch.net/kontakt.html)"
+    "Operations Research und Machine Learning ([Über mich](https://sebastianhanisch.net/ueber-mich.html)). "
+    "Mehr zur Reihe: [Matching: von Greedy bis Nierentausch](https://sebastianhanisch.net/konzepte-matching.html)."
 )
